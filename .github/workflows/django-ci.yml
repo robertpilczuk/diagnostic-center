@@ -43,16 +43,22 @@ jobs:
           source venv/bin/activate
           pip install -r requirements.txt
 
+      - name: Set environment variable
+        run: echo "DJANGO_SETTINGS_MODULE=diagnostic_center.settings" >> $GITHUB_ENV
+
+      - name: List project files for debugging
+        run: ls -R
+
       - name: Run migrations
         env:
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/diagnostic_db
         run: |
           source venv/bin/activate
-          python manage.py migrate
+          python diagnostic_center/manage.py migrate
 
       - name: Run tests
         env:
           DATABASE_URL: postgres://postgres:postgres@localhost:5432/diagnostic_db
         run: |
           source venv/bin/activate
-          python manage.py test
+          python diagnostic_center/manage.py test
