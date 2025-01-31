@@ -15,4 +15,5 @@ urlpatterns = [
         views.confirm_reschedule_date,
         name="confirm_reschedule_date",
     ),
+    path("view_test_result/", views.view_test_result, name="view_test_result"),
 ]

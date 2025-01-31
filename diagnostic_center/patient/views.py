@@ -51,4 +51,9 @@ def confirm_reschedule_date(request, appointment_id):
     )
 
 
+def view_test_result(request):
+    tests = LabTest.objects.filter(patient=request.user)
+    return render(request, "patient/view_test_result.html", {"tests": tests})
+
+
 # Create your views here.
