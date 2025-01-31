@@ -45,7 +45,7 @@ class Appointment(models.Model):
     patient = models.ForeignKey(
         User, on_delete=models.CASCADE, limit_choices_to={"is_patient": True}
     )
-    laboratory = models.ForeignObject(
+    laboratory = models.ForeignKey(
         User, on_delete=models.CASCADE, limit_choices_to={"is_laboratory": True}
     )
     date = models.DateTimeField()
