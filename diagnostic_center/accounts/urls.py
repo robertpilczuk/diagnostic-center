@@ -10,4 +10,5 @@ urlpatterns = [
         views.verify_laboratory,
         name="verify_laboratory",
     ),
+    path("view_doctors/", views.view_doctors, name="view_doctors"),
 ]

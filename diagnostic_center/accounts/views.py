@@ -50,4 +50,9 @@ def verify_laboratories(request, laboratory_id):
     )
 
 
+def view_doctors(request):
+    doctors = User.objects.filter(is_doctor=True)
+    return render(request, "accounts/view_doctors.html", {"doctors": doctors})
+
+
 # Create your views here.
