@@ -10,4 +10,9 @@ urlpatterns = [
         name="cancel_appointment",
     ),
     path("view_prescription/", views.view_prescription, name="view_prescription"),
+    path(
+        "confirm_reschedule_date/<int:appointment_id>/",
+        views.confirm_reschedule_date,
+        name="confirm_reschedule_date",
+    ),
 ]

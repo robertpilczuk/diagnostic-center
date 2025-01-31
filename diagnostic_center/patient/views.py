@@ -36,4 +36,19 @@ def view_prescription(request):
     )
 
 
+def confirm_reschedule_date(request, appointment_id):
+    appointment = get_object_or_404(
+        Appointment, id=appointment_id, patient=request.user
+    )
+    if request.method == "POST":
+        new_date = request.POST.get("new_date")
+        appointment.date = new_date
+        appointment.status = "pending"
+        appointment.save()
+        return redirect("view_appointments")
+    return render(
+        request, "patient/confirm_reschedule_date.html", {"appointment": appointment}
+    )
+
+
 # Create your views here.
