@@ -12,10 +12,16 @@ class LabTest(models.Model):
 
 class AppointmentRequest(models.Model):
     patient = models.ForeignKey(
-        User, on_delete=models.CASCADE, limit_choices_to={"is_patient": True}
+        User,
+        on_delete=models.CASCADE,
+        limit_choices_to={"is_patient": True},
+        related_name="patient_appointments",
     )
     laboratory = models.ForeignKey(
-        User, on_delete=models.CASCADE, limit_choices_to={"is_laboratory": True}
+        User,
+        on_delete=models.CASCADE,
+        limit_choices_to={"is_laboratory": True},
+        related_name="laboratory_appointments",
     )
     date = models.DateTimeField()
     status = models.CharField(
