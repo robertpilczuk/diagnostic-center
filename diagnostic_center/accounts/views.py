@@ -55,4 +55,13 @@ def view_doctors(request):
     return render(request, "accounts/view_doctors.html", {"doctors": doctors})
 
 
+def verify_doctor(request, doctor_id):
+    doctor = get_object_or_404(User, id=doctor_id, is_doctor=True)
+    if doctor.method == "POST":
+        doctor.is_verified = True
+        doctor.save()
+        return redirect("view_doctors")
+    return render(request, "accounts/verify_doctor.html", {"doctor": doctor})
+
+
 # Create your views here.

@@ -6,9 +6,9 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     is_admin = models.BooleanField(default=False)
     is_laboratory = models.BooleanField(default=False)
-    is_verified = models.BooleanField(default=False)
     is_doctor = models.BooleanField(default=False)
     is_patient = models.BooleanField(default=False)
+    is_verified = models.BooleanField(default=False)
 
     groups = models.ManyToManyField(
         "auth.Group",

@@ -11,4 +11,5 @@ urlpatterns = [
         name="verify_laboratory",
     ),
     path("view_doctors/", views.view_doctors, name="view_doctors"),
+    path("verify_doctor/<int:doctor_id>/", views.verify_doctor, name="verify_doctor"),
 ]

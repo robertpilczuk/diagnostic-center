@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Verify Doctor</title>
+</head>
+
+<body>
+    <h2>Verify Doctor</h2>
+    <p>Are you sure you want to verify {{doctor.username}} ?</p>
+    <form method="post">
+        {%csrf_token%}
+        <button type="submit">Verify</button>
+    </form>
+</body>
+
+</html>
