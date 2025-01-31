@@ -46,7 +46,7 @@ def verify_laboratories(request, laboratory_id):
         laboratory.save()
         return redirect("view_laboratories")
     return render(
-        request, "accounts/verify_laboratory.html", {"laboratory": laboratory}
+        request, "accounts/verify_laboratories.html", {"laboratory": laboratory}
     )
 
 

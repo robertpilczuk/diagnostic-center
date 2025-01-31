@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import PrescriptionForm
 from .models import Prescription
-from laboratory import LabTest
+from laboratory.models import LabTest
 
 
 def search_patient(request):
@@ -25,7 +25,7 @@ def write_prescription(request):
 
 
 def view_test_results(request):
-    tests = LabTest.object.all()
+    tests = LabTest.objects.all()
     return render(request, "doctor/view_test_results.html", {"tests": tests})
 
 
