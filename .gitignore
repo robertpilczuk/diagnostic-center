@@ -3,3 +3,7 @@ __pycache__/
 *sqlite3
 *.env
 */migrations/*
+*Migrations files
+accounts/migrations/*
+doctor/migrations/*
+laboratory/migrations/*
