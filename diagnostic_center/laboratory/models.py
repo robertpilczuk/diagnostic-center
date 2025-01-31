@@ -40,13 +40,13 @@ class Report(models.Model):
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
 
-# TODO sprawdz czy to nie to samo co AppointmentRequest!!!
+# TODO  czy to nie to samo co AppointmentRequest!!!
 class Appointment(models.Model):
     patient = models.ForeignKey(
         User, on_delete=models.CASCADE, limit_choices_to={"is_patient": True}
     )
     laboratory = models.ForeignObject(
-        User, on_delete=model.CASCADE, limit_choices_to={"is_laboratory": True}
+        User, on_delete=models.CASCADE, limit_choices_to={"is_laboratory": True}
     )
     date = models.DateTimeField()
     prescription = models.TextField()
