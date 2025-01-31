@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth import login, authenticate
 from .forms import UserRegistrationForm, UserLoginForm
+from accounts.models import User
 
 
 def register(request):
@@ -29,6 +30,13 @@ def user_login(request):
     else:
         form = UserLoginForm()
     return render(request, "accounts/login.html", {"form": form})
+
+
+def view_laboratories(request):
+    laboratories = User.object.filter(is_laboratory=True)
+    return render(
+        request, "accounts/view_laboratories.html", {"laboratories": laboratories}
+    )
 
 
 # Create your views here.
