@@ -15,13 +15,13 @@ class AppointmentRequest(models.Model):
         User,
         on_delete=models.CASCADE,
         limit_choices_to={"is_patient": True},
-        related_name="patient_appointments",
+        related_name="patient_appointment_requests",
     )
     laboratory = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
         limit_choices_to={"is_laboratory": True},
-        related_name="laboratory_appointments",
+        related_name="laboratory_appointments_request",
     )
     date = models.DateTimeField()
     status = models.CharField(
@@ -43,10 +43,16 @@ class Report(models.Model):
 # TODO  czy to nie to samo co AppointmentRequest!!!
 class Appointment(models.Model):
     patient = models.ForeignKey(
-        User, on_delete=models.CASCADE, limit_choices_to={"is_patient": True}
+        User,
+        on_delete=models.CASCADE,
+        limit_choices_to={"is_patient": True},
+        related_name="patient_appointments",
     )
     laboratory = models.ForeignKey(
-        User, on_delete=models.CASCADE, limit_choices_to={"is_laboratory": True}
+        User,
+        on_delete=models.CASCADE,
+        limit_choices_to={"is_laboratory": True},
+        related_name="laboratory_appointments_appointment",
     )
     date = models.DateTimeField()
     prescription = models.TextField()
