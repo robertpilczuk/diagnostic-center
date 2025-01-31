@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Reschedule Appointment</title>
+</head>
+
+<body>
+    <h2>Reschedule Appointment</h2>
+    <form method="post">
+        {%csrf_token%}
+        <input type="datetime-local" name="'new_date">
+        <button type="submit">Reschedule</button>
+    </form>
+</body>
+
+</html>

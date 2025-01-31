@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import LabTestForm, AppointmentRequestForm
 from .models import LabTest, AppointmentRequest
 
@@ -21,6 +21,33 @@ def view_appointment_request(request):
     return render(
         request, "laboratory/view_appointment_request.html", {"request": request}
     )
+
+
+def accept_appointment(request, appointment_id):
+    appointment = get_object_or_404(AppointmentRequest, id=appointment_id)
+    appointment.status = "accepted"
+    appointment.save()
+    return redirect("view_appointment_requests")
+
+
+def reschedule_appointment(request, appointment_id):
+    appointment = get_object_or_404(AppointmentRequest, id=appointment_id)
+    if request.method == "POST":
+        new_date = request.POST.get("new_date")
+        appointment.date = new_date
+        appointment.status = "pending"
+        appointment.save()
+        return redirect("view_appointment_request")
+    return render(
+        request, "laboratory/reschedule_appointment.html", {"appointment": appointment}
+    )
+
+
+def reject_appointment(request, appointment_id):
+    appointment = get_object_or_404(AppointmentRequest, id=appointment_id)
+    appointment.status = "rejected"
+    appointment.save()
+    return redirect("view_appointment_requests")
 
 
 # Create your views here.
