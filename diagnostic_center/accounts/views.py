@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import login, authenticate
 from .forms import UserRegistrationForm, UserLoginForm
 from accounts.models import User
@@ -36,6 +36,17 @@ def view_laboratories(request):
     laboratories = User.object.filter(is_laboratory=True)
     return render(
         request, "accounts/view_laboratories.html", {"laboratories": laboratories}
+    )
+
+
+def verify_laboratories(request, laboratory_id):
+    laboratory = get_object_or_404(User, id=laboratory_id, is_laboratory=True)
+    if request.method == "POST":
+        laboratory.is_verified = True
+        laboratory.save()
+        return redirect("view_laboratories")
+    return render(
+        request, "accounts/verify_laboratory.html", {"laboratory": laboratory}
     )
 
 
