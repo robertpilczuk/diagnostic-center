@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .forms import PrescriptionForm
 from .models import Prescription
+from laboratory import LabTest
 
 
 def search_patient(request):
@@ -21,6 +22,11 @@ def write_prescription(request):
     else:
         form = PrescriptionForm()
     return render(request, "doctor/write_prescription.html", {"form": form})
+
+
+def view_test_results(request):
+    tests = LabTest.object.all()
+    return render(request, "doctor/view_test_results.html", {"tests": tests})
 
 
 # Create your views here.
