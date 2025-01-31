@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from laboratory.models import LabTest
+from django.shortcuts import render, redirect, get_object_or_404
+from laboratory.models import LabTest, Appointment
 from .forms import AppointmentForm
 
 
@@ -17,6 +17,15 @@ def book_appointment(request):
     else:
         form = AppointmentForm()
     return render(request, "patient/book_appointment.html", {"form": form})
+
+
+def cancel_appointment(request, appointment_id):
+    appointment = get_object_or_404(
+        Appointment, id=appointment_id, patient=request.user
+    )
+    appointment.status = "canceled"
+    appointment.save()
+    return redirect("view_appointments")
 
 
 # Create your views here.
