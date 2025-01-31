@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>View Appointment Requests</title>
+</head>
+
+<body>
+    <h2>View Appointment Requests</h2>
+    <ul>
+        {% for request in requests %}
+        <li>{{request.patient.username}} - {{request.date}} - {{request.status}}</li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
