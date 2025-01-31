@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from laboratory.models import LabTest, Appointment
 from .forms import AppointmentForm
+from doctor.models import Prescription
 
 
 def view_tests(request):
@@ -26,6 +27,13 @@ def cancel_appointment(request, appointment_id):
     appointment.status = "canceled"
     appointment.save()
     return redirect("view_appointments")
+
+
+def view_prescription(request):
+    prescription = Prescription.objects.filter(patient=request.user)
+    return render(
+        request, "patient/view_prescription.html", {"prescription": prescription}
+    )
 
 
 # Create your views here.
