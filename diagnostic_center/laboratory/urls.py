@@ -23,4 +23,7 @@ urlpatterns = [
         views.reject_appointment,
         name="reject_appointment",
     ),
+    path(
+        "upload_report/<int:appointment_id>/", views.upload_report, name="upload_report"
+    ),
 ]

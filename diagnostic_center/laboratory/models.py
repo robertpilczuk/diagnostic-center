@@ -34,4 +34,10 @@ class AppointmentRequest(models.Model):
     )
 
 
+class Report(models.Model):
+    appointment = models.OneToOneField(AppointmentRequest, on_delete=models.CASCADE)
+    report_file = models.FileField(upload_to="reports/")
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+
 # Create your models here.
