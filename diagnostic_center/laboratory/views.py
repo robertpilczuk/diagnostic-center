@@ -69,4 +69,9 @@ def upload_report(request, appointment_id):
     )
 
 
+def view_reports(request):
+    reports = Report.objects.all()
+    return render(request, "laboratory/view_reports.html", {"reports": reports})
+
+
 # Create your views here.

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>View Reports</title>
+</head>
+
+<body>
+    <h2>View Reports</h2>
+    <ul>
+        { % for report in reports %}
+        <li>{{report.appointment.patient.username}} - {{report.uploaded_at}} - <a
+                href="{{report.report_file.url}}">Download</a></li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
