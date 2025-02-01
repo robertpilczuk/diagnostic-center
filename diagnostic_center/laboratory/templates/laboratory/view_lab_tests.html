@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>View Lab Tests</title>
+</head>
+
+<body>
+    <h2>View Lab Tests</h2>
+    <ul>
+        {% for test in tests %}
+        <li>{{test.name}} - {{test.description}}</li>
+        {%endfor%}
+    </ul>
+</body>
+
+</html>

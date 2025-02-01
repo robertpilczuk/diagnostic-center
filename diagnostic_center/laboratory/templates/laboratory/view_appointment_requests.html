@@ -8,8 +8,11 @@
 <body>
     <h2>View Appointment Requests</h2>
     <ul>
-        {% for request in requests %}
-        <li>{{request.patient.username}} - {{request.date}} - {{request.status}}</li>
+        {% for appointment in appointments %}
+        <li>{{appointment.patient.username}} - {{appointment.date}} - {{request.status}} - <a
+                href="{% url 'accept_appointment' appointment.id %}">Accept</a> | <a
+                href="{% url 'reschedule_appointment' appointment.id %}">Reschedule</a> | <a
+                href="{% url 'reject_appointment' appointment.id %}">Reject</a></li>
         {% endfor %}
     </ul>
 </body>

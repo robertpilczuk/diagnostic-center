@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import LabTestForm, AppointmentRequestForm
-from .forms import ReportForm
-from .models import LabTest, AppointmentRequest, Report
+from .forms import ReportForm, LabTestForm, AppointmentForm
+from .models import LabTest, Appointment, AppointmentRequest, Report, AppointmentForm
 
 
 def laboratory_home(request):
@@ -21,10 +21,17 @@ def add_lab_test(request):
     return render(request, "laboratory/add_lab_test.html", {"form": form})
 
 
+def view_lab_tests(request):
+    tests = LabTest.objects.all()
+    return render(request, "laboratory/view_lab_tests.html", {"tests": tests})
+
+
 def view_appointment_request(request):
-    request = AppointmentRequest.objects.filter(laboratory=request.user)
+    appointments = Appointment.objects.filter(status="pending")
     return render(
-        request, "laboratory/view_appointment_request.html", {"request": request}
+        request,
+        "laboratory/view_appointment_request.html",
+        {"appointments": appointments},
     )
 
 
