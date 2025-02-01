@@ -4,6 +4,10 @@ from .forms import ReportForm
 from .models import LabTest, AppointmentRequest, Report
 
 
+def laboratory_home(request):
+    return render(request, "laboratory_home.html")
+
+
 def add_lab_test(request):
     if request.method == "POST":
         form = LabTestForm(request.POST)
