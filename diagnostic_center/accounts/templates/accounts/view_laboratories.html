@@ -9,7 +9,7 @@
     <h2>View Laboratories</h2>
     <ul>
         {% for laboratory in laboratories%}
-        <li>{{ laboratory.username }}</li>
+        <li>{{ laboratory.username }} - <a href="{%url 'verify_laboratory' laboratory.id}">Verify</a></li>
         {% endfor %}
     </ul>
 </body>

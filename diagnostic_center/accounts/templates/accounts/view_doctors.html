@@ -9,7 +9,7 @@
     <h2>View Doctors</h2>
     <ul>
         {% for doctor in doctors %}
-        <li>{{ doctor.username }}</li>
+        <li>{{ doctor.username }} - <a href="{% url 'verify_doctor' doctor.id%}">Verify</a></li>
         {% endfor %}
     </ul>
 </body>
