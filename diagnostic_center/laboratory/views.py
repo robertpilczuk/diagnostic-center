@@ -1,18 +1,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import LabTestForm, AppointmentRequestForm
-from .forms import ReportForm, LabTestForm, AppointmentForm
+from .forms import ReportForm, LabTestForm
 from .models import (
     LabTest,
     Appointment,
     AppointmentRequest,
     Report,
-    AppointmentForm,
     LabTestForm,
 )
 
 
 def laboratory_home(request):
-    return render(request, "laboratory_home.html")
+    return render(request, "laboratory/home.html")
 
 
 def add_lab_test(request):
@@ -22,7 +20,7 @@ def add_lab_test(request):
             lab_test = form.save(commit=False)
             lab_test.laboratory = request.user
             lab_test.save()
-            return redirect("lab_test_list")
+            return redirect("view_lab_tests")
     else:
         form = LabTestForm()
     return render(request, "laboratory/add_lab_test.html", {"form": form})
@@ -50,7 +48,7 @@ def accept_appointment(request, appointment_id):
 
 
 def reschedule_appointment(request, appointment_id):
-    appointment = get_object_or_404(AppointmentRequest, id=appointment_id)
+    appointment = get_object_or_404(Appointment, id=appointment_id)
     if request.method == "POST":
         new_date = request.POST.get("new_date")
         appointment.date = new_date
@@ -63,21 +61,21 @@ def reschedule_appointment(request, appointment_id):
 
 
 def reject_appointment(request, appointment_id):
-    appointment = get_object_or_404(AppointmentRequest, id=appointment_id)
+    appointment = get_object_or_404(Appointment, id=appointment_id)
     appointment.status = "rejected"
     appointment.save()
     return redirect("view_appointment_requests")
 
 
 def upload_report(request, appointment_id):
-    appointment = get_object_or_404(AppointmentRequest, id=appointment_id)
+    appointment = get_object_or_404(Appointment, id=appointment_id)
     if request.method == "POST":
         form = ReportForm(request.POST, request.FILES)
         if form.is_valid():
             report = form.save(commit=False)
             report.appointment = appointment
             report.save()
-            return redirect("view_appointment_requests")
+            return redirect("view_reports")
     else:
         form = ReportForm()
     return render(
