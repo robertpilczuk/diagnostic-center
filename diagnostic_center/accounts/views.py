@@ -11,7 +11,7 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect("home")
+            return redirect("accounts/login")
     else:
         form = UserRegistrationForm()
     return render(request, "accounts/register.html", {"form": form})
@@ -22,7 +22,7 @@ def patient_register(request):
         form = PatientRegistrationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect("login")
+            return redirect("accounts/login")
     else:
         form = PatientRegistrationForm()
     return render(request, "accounts/patient_register.html", {"form": form})
@@ -42,6 +42,11 @@ def user_login(request):
     else:
         form = UserLoginForm()
     return render(request, "accounts/login.html", {"form": form})
+
+
+def user_logout(request):
+    logout(request)
+    return redirect("accounts/login")
 
 
 def view_laboratories(request):
