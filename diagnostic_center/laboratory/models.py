@@ -9,6 +9,9 @@ class LabTest(models.Model):
         User, on_delete=models.CASCADE, limit_choices_to={"is_laboratory": True}
     )
 
+    def __str__(self):
+        return self.name
+
 
 class AppointmentRequest(models.Model):
     patient = models.ForeignKey(
@@ -33,11 +36,8 @@ class AppointmentRequest(models.Model):
         ],
     )
 
-
-class Report(models.Model):
-    appointment = models.OneToOneField(AppointmentRequest, on_delete=models.CASCADE)
-    report_file = models.FileField(upload_to="reports/")
-    uploaded_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return f"Appointment for {self.laboratory} on {self.date}"
 
 
 # TODO  czy to nie to samo co AppointmentRequest!!!
@@ -64,6 +64,18 @@ class Appointment(models.Model):
             ("rejected", "Rejected"),
         ],
     )
+
+    def __str__(self):
+        return f"Appointment request for {self.patient} on {self.date}"
+
+
+class Report(models.Model):
+    appointment = models.OneToOneField(AppointmentRequest, on_delete=models.CASCADE)
+    report_file = models.FileField(upload_to="reports/")
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Report for appointment {self.appointment}"
 
 
 # Create your models here.

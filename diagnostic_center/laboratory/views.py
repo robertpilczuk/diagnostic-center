@@ -5,7 +5,6 @@ from .models import (
     Appointment,
     AppointmentRequest,
     Report,
-    LabTestForm,
 )
 
 

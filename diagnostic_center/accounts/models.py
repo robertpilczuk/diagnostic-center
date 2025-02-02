@@ -24,3 +24,6 @@ class User(AbstractUser):
         help_text="Specific permissions for this user.",
         verbose_name="user permissions",
     )
+
+    def __str__(self):
+        return self.username
