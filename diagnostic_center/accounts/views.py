@@ -7,17 +7,6 @@ from accounts.models import User
 
 def register(request):
     if request.method == "POST":
-        form = PatientRegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("login")
-    else:
-        form = PatientRegistrationForm()
-    return render(request, "accounts/register.html", {"form": form})
-
-
-def register(request):
-    if request.method == "POST":
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
@@ -26,6 +15,17 @@ def register(request):
     else:
         form = UserRegistrationForm()
     return render(request, "accounts/register.html", {"form": form})
+
+
+def patient_register(request):
+    if request.method == "POST":
+        form = PatientRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("login")
+    else:
+        form = PatientRegistrationForm()
+    return render(request, "accounts/patient_register.html", {"form": form})
 
 
 def user_login(request):
