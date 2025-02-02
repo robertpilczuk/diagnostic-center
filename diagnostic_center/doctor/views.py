@@ -4,6 +4,10 @@ from .models import Prescription
 from laboratory.models import LabTest
 
 
+def doctor_home(request):
+    return render(request, "doctor/home.html")
+
+
 def search_patient(request):
     if request.method == "POST":
         query = request.POST.get("query")
