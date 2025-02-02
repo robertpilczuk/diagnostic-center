@@ -4,6 +4,17 @@ from .forms import AppointmentForm
 from doctor.models import Prescription
 
 
+def patient_register(request):
+    if request.method == "POST":
+        form = PatientRegistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("login")
+    else:
+        form = PatientRegistrationForm()
+    return render(request, "patient/patient_register.html", {"form": form})
+
+
 def view_tests(request):
     tests = LabTest.objects.all()
     return render(request, "patient/view_tests.html", {"tests": tests})
