@@ -29,4 +29,11 @@ def view_test_results(request):
     return render(request, "doctor/view_test_results.html", {"tests": tests})
 
 
+def view_prescriptions(request):
+    prescriptions = Prescription.objects.all()
+    return render(
+        request, "doctor/view_prescriptions.html", {"prescriptions": prescriptions}
+    )
+
+
 # Create your views here.

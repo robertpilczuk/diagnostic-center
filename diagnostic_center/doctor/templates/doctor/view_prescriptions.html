@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>View Prescriptions</title>
+</head>
+
+<body>
+    <h2>View Prescriptions</h2>
+    <ul>
+        {% for prescription in prescriptions %}
+        <li>{{prescription.description}}</li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
