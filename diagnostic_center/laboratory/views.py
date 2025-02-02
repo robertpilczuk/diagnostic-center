@@ -1,7 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import LabTestForm, AppointmentRequestForm
 from .forms import ReportForm, LabTestForm, AppointmentForm
-from .models import LabTest, Appointment, AppointmentRequest, Report, AppointmentForm
+from .models import (
+    LabTest,
+    Appointment,
+    AppointmentRequest,
+    Report,
+    AppointmentForm,
+    LabTestForm,
+)
 
 
 def laboratory_home(request):
