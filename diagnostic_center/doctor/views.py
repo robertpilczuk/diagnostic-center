@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import PrescriptionForm
+from .forms import PrescriptionForm, OrderLabTestForm
 from .models import Prescription
 from laboratory.models import LabTest
 
@@ -38,6 +38,19 @@ def view_prescriptions(request):
     return render(
         request, "doctor/view_prescriptions.html", {"prescriptions": prescriptions}
     )
+
+
+def order_lab_test(request):
+    if request.method == "POST":
+        form = OrderLabTestForm(request.POST)
+        if form.is_valid():
+            lab_test = form.save(commit=False)
+            lab_test.ordered_by = request.user
+            lab_test.save()
+            return redirect("view_test_results")
+    else:
+        form = OrderLabTestForm()
+    return render(request, "doctor/order_lab_test.html", {"form": form})
 
 
 # Create your views here.

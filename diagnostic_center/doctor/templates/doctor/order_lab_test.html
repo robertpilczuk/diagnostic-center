@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Order Lab Test</title>
+</head>
+
+<body>
+    <h2>Order Lab Test</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Order</button>
+    </form>
+</body>
+
+</html>
