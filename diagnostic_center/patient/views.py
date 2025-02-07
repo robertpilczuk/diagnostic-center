@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from laboratory.models import LabTest, Appointment
 from .forms import AppointmentForm
 from doctor.models import Prescription
+from accounts.forms import PatientRegistrationForm
 
 
 def patient_register(request):
@@ -22,6 +23,7 @@ def view_tests(request):
 
 def book_appointment(request):
     if request.method == "POST":
+        form = AppointmentForm(request.POST)
         appointment = form.save(commit=False)
         appointment.patient = request.user
         appointment.save()

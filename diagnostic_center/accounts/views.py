@@ -65,7 +65,7 @@ def user_logout(request):
 
 
 def view_laboratories(request):
-    laboratories = User.object.filter(is_laboratory=True)
+    laboratories = User.objects.filter(is_laboratory=True)
     return render(
         request, "accounts/view_laboratories.html", {"laboratories": laboratories}
     )
@@ -89,7 +89,7 @@ def view_doctors(request):
 
 def verify_doctor(request, doctor_id):
     doctor = get_object_or_404(User, id=doctor_id, is_doctor=True)
-    if doctor.method == "POST":
+    if request.method == "POST":
         doctor.is_verified = True
         doctor.save()
         return redirect("view_doctors")
