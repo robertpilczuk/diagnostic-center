@@ -8,8 +8,8 @@
 <body>
     <h2>Write Prescription</h2>
     <form method="post">
-        {%csrf_token%}
-        {{form.as_p}}
+        {% csrf_token %}
+        {{ form.as_p }}
         <button type="submit">Write</button>
     </form>
 </body>
