@@ -8,6 +8,8 @@ from accounts.models import User
 def login_view(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
+        if not form.is_valid():
+            print(form.errors)
         if form.is_valid():
             username = form.cleaned_data.get("username")
             password = form.cleaned_data.get("password")
@@ -15,6 +17,10 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 return redirect("home")
+            else:
+                form.add_error(None, "Invalid username or password.")
+        else:
+            form.add_error(None, "Invalid form submission.")
     else:
         form = AuthenticationForm()
     return render(request, "accounts/login.html", {"form": form})
