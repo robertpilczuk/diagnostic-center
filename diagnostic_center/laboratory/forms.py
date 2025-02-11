@@ -1,5 +1,5 @@
 from django import forms
-from .models import LabTest, AppointmentRequest, Report, Appointment
+from .models import LabTest, AppointmentRequest, Report, Appointment, Sample
 
 
 class LabTestForm(forms.ModelForm):
@@ -24,3 +24,9 @@ class AppointmentForm(forms.ModelForm):
     class Meta:
         model = Appointment
         fields = ["laboratory", "date", "prescription"]
+
+
+class SampleRegistrationForm(forms.ModelForm):
+    class Meta:
+        model = Sample
+        fields = ["patient", "test_name", "sample_date"]
