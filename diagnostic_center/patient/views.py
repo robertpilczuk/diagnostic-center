@@ -5,6 +5,10 @@ from doctor.models import Prescription
 from accounts.forms import PatientRegistrationForm
 
 
+def patient_home(request):
+    return render(request, "patient/patient_home.html")
+
+
 def patient_register(request):
     if request.method == "POST":
         form = PatientRegistrationForm(request.POST)

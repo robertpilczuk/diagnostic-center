@@ -16,6 +16,8 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
+                if user.is_patient:
+                    return redirect("patient_home")
                 return redirect("home")
             else:
                 form.add_error(None, "Invalid username or password.")
@@ -32,7 +34,11 @@ def register(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
+            if user.is_patient:
+                return redirect("patient_home")
             return redirect("login")
+        else:
+            print("Form errors:", form.errors)
     else:
         form = UserRegistrationForm()
     return render(request, "accounts/register.html", {"form": form})
