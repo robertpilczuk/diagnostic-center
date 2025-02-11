@@ -29,4 +29,5 @@ urlpatterns = [
         "upload_report/<int:appointment_id>/", views.upload_report, name="upload_report"
     ),
     path("view_reports/", views.view_reports, name="view_reports"),
+    path("register_sample/", views.register_sample, name="register_sample"),
 ]
