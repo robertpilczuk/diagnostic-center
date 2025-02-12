@@ -1,5 +1,14 @@
 from django import forms
-from .models import LabTest, AppointmentRequest, Report, Appointment, Sample, TestResult
+from .models import (
+    LabTest,
+    AppointmentRequest,
+    Report,
+    Appointment,
+    Sample,
+    TestResult,
+    TestRequest,
+    TestOrder,
+)
 
 
 class LabTestForm(forms.ModelForm):
@@ -42,6 +51,17 @@ class SampleForm(forms.ModelForm):
     class Meta:
         model = Sample
         fields = ["sample_id", "patient"]
+
+
+class TestRequestForm(forms.ModelForm):
+    class Meta:
+        model = TestRequest
+        fields = ["sample", "test_order"]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["sample"].queryset = Sample.objects.all()
+        self.fields["test_order"].queryset = TestOrder.objects.filter(is_completed=True)
 
 
 class TestResultForm(forms.ModelForm):

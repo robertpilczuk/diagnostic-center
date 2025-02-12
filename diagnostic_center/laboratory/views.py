@@ -31,7 +31,7 @@ def register_sample(request):
 def enter_test_result(request, test_request_id):
     test_request = get_object_or_404(TestRequest, id=test_request_id)
     if request.method == "POST":
-        form = TestResultForm
+        form = TestResultForm(request.POST)
         if form.is_valid():
             test_result = form.save(commit=False)
             test_result.test_request = test_request
