@@ -4,6 +4,13 @@ from .models import User
 
 
 class UserRegistrationForm(UserCreationForm):
+    USER_TYPE_CHOICES = [
+        ("is_patient", "Patient"),
+        ("is_doctor", "Doctor"),
+        ("is_laboratory", "Laboratory"),
+    ]
+    user_type = forms.ChoiceField(choices=USER_TYPE_CHOICES, required=True)
+
     pesel = forms.CharField(max_length=11, required=True)
     date_of_birth = forms.DateField(required=True)
     address = forms.CharField(max_length=255, required=False)
@@ -15,6 +22,7 @@ class UserRegistrationForm(UserCreationForm):
             "username",
             "password1",
             "password2",
+            "user_type",
             "is_admin",
             "is_laboratory",
             "is_doctor",

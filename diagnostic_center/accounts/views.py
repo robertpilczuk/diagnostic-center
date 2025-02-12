@@ -4,6 +4,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from .forms import UserRegistrationForm, UserLoginForm, PatientRegistrationForm
 from accounts.models import User
 from patient.models import Patient
+from doctor.models import Doctor
+from laboratory.models import Laboratory
 
 
 def login_view(request):
@@ -33,7 +35,16 @@ def register(request):
     if request.method == "POST":
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
+            user = form.save(commit=False)
+            user_type = form.cleaned_data.get("user_type")
+            if user_type == "is_patient":
+                user.is_patient = True
+            elif user_type == "is_doctor":
+                user.is_doctor = True
+            elif user_type == "is_laboratory":
+                user.is_laboratory = True
             user = form.save()
+
             if user.is_patient:
                 Patient.objects.create(
                     user=user,
@@ -42,9 +53,23 @@ def register(request):
                     address=request.POST.get("address"),
                     phone_number=request.POST.get("phone_number"),
                 )
+            elif user.is_doctor:
+                Doctor.objects.create(
+                    user=user,
+                    license_number=request.POST.get("license_number"),
+                    specialization=request.POST.get("specialization"),
+                )
+            elif user.is_laboratory:
+                Laboratory.objects.create(
+                    user=user,
+                    laboratory_name=request.POST.get("laboratory_name"),
+                    address=request.POST.get("address"),
+                )
             login(request, user)
+
             if user.is_patient:
                 return redirect("patient_home")
+
             return redirect("login")
         else:
             print("Form errors:", form.errors)

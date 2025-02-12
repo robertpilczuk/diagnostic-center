@@ -3,6 +3,17 @@ from accounts.models import User
 from doctor.models import TestOrder
 
 
+class Laboratory(models.Model):
+    user = models.OneToOneField(
+        User, on_delete=models.CASCADE, related_name="laboratory_profile"
+    )
+    laboratory_name = models.CharField(max_length=100)
+    address = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f"{self.laboratory_name}"
+
+
 class LabTest(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
