@@ -1,6 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ReportForm, LabTestForm, SampleForm
-from .models import LabTest, Appointment, AppointmentRequest, Report, Sample
+from .forms import ReportForm, LabTestForm, SampleForm, TestResultForm
+from .models import (
+    LabTest,
+    Appointment,
+    AppointmentRequest,
+    Report,
+    Sample,
+    TestRequest,
+    TestResult,
+)
 
 
 def laboratory_home(request):
@@ -18,6 +26,27 @@ def register_sample(request):
     else:
         form = SampleForm()
     return render(request, "laboratory/register_sample.html", {"form": form})
+
+
+def enter_test_result(request, test_request_id):
+    test_request = get_object_or_404(TestRequest, id=test_request_id)
+    if request.method == "POST":
+        form = TestResultForm
+        if form.is_valid():
+            test_result = form.save(commit=False)
+            test_result.test_request = test_request
+            test_result.entered_by = request.user
+            test_result.save()
+            test_request.is_completed = True
+            test_request.save()
+            return redirect("laboratory_dashboard")
+    else:
+        form = TestResultForm()
+    return render(
+        request,
+        "laboratory/enter_test_result.html",
+        {"form": form, "test_request": test_request},
+    )
 
 
 # def register_sample(request):
@@ -106,6 +135,3 @@ def upload_report(request, appointment_id):
 def view_reports(request):
     reports = Report.objects.all()
     return render(request, "laboratory/view_reports.html", {"reports": reports})
-
-
-# Create your views here.

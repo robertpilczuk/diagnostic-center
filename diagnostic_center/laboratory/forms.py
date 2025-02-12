@@ -42,3 +42,9 @@ class SampleForm(forms.ModelForm):
     class Meta:
         model = Sample
         fields = ["sample_id", "patient"]
+
+
+class TestResultForm(forms.ModelForm):
+    class Meta:
+        model = TestResult
+        fields = ["result"]

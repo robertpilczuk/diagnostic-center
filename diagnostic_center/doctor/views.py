@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import PrescriptionForm, OrderLabTestForm, TestOrderForm
 from .models import Prescription, TestOrder
-from laboratory.models import LabTest
+from laboratory.models import LabTest, TestResult
 
 
 def doctor_home(request):
@@ -66,4 +66,11 @@ def create_test_order(request):
     return render(request, "doctor/create_test_order.html", {"form": form})
 
 
-# Create your views here.
+def view_test_result(request, test_order_id):
+    test_order = get_object_or_404(TestOrder, id=test_order_id)
+    test_results = TestResult.objects.filter(test_results__test_order=test_order)
+    return render(
+        request,
+        "doctor/view_test_results.html",
+        {"test_order": test_order, "test_results": test_results},
+    )

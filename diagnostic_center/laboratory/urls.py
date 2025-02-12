@@ -30,4 +30,9 @@ urlpatterns = [
     ),
     path("view_reports/", views.view_reports, name="view_reports"),
     path("register_sample/", views.register_sample, name="register_sample"),
+    path(
+        "enter_test_result/<int:test_request_id>/",
+        views.enter_test_result,
+        name="enter_test_result",
+    ),
 ]

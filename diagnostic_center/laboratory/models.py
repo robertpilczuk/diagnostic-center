@@ -1,6 +1,7 @@
 from django.db import models
 from accounts.models import User
 from doctor.models import TestOrder
+from .models import TestRequest
 
 
 class Laboratory(models.Model):
@@ -112,7 +113,7 @@ class Sample(models.Model):
         return f"Sample {self.sample_id} for {self.patient}"
 
 
-class testRequest(models.Model):
+class TestRequest(models.Model):
     sample = models.ForeignKey(
         Sample, on_delete=models.CASCADE, related_name="test_requests"
     )
@@ -124,3 +125,15 @@ class testRequest(models.Model):
 
     def __str__(self):
         return f"Test Request for {self.sample}"
+
+
+class TestResult(models.Model):
+    test_request = models.OneToOneField(
+        TestRequest, on_delete=models.CASCADE, related_name="test_result"
+    )
+    result = models.TextField()
+    entered_by = models.ForeignKey("accounts.User", on_delete=models.CASCADE)
+    entered_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Test Result for {self.test_request}"

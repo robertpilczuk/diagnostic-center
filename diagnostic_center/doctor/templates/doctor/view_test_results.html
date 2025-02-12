@@ -6,7 +6,30 @@
 </head>
 
 <body>
-    <h2>View Test Results</h2>
+    {% extends 'base.html' %}
+    {% block content %}
+    <h2>Test results for {{ test_order }}</h2>
+    <table class="table">
+        <thread>
+            <tr>
+                <th>Test Request</th>
+                <th>Result</th>
+                <th>Entered By</th>
+                <th>Entered At</th>
+            </tr>
+        </thread>
+        <tbody>
+            {% for result in test_results %}
+            <tr>
+                <td>{{ result.test_request }}</td>
+                <td>{{ result.result }}</td>
+                <td>{{ result.entered_by }}</td>
+                <td>{{ result.entered_at }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}
     <ul>
         {% for test in tests %}
         <li>{{test.name}} - {{test.description}}</li>
