@@ -2,19 +2,19 @@
 <html>
 
 <head>
-    <title>Register Sample</title>
+    <title>Create Test Order</title>
 </head>
 
 <body>
     {% extends 'base.html' %}
     {% block content %}
-    <h2>Register Sample</h2>
+    <h2>Create Test Order</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="'btn btn-primary">Submit</button>
     </form>
-    {% endblock %}
+    {% end block %}
 </body>
 
 </html>

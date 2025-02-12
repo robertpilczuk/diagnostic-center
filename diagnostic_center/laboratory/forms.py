@@ -36,3 +36,9 @@ class TestResultForm(forms.ModelForm):
     class Meta:
         model = TestResult
         fields = ["patient", "test_name", "result", "result_date"]
+
+
+class SampleForm(forms.ModelForm):
+    class Meta:
+        model = Sample
+        fields = ["sample_id", "patient"]

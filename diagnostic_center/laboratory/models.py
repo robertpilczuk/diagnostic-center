@@ -1,5 +1,6 @@
 from django.db import models
 from accounts.models import User
+from doctor.models import TestOrder
 
 
 class LabTest(models.Model):
@@ -90,4 +91,25 @@ class TestResult(models.Model):
         return f"Test Result for {self.patient} - {self.test_name}"
 
 
-# Create your models here.
+class Sample(models.Model):
+    sample_id = models.CharField(max_length=100, unique=True)
+    patient = models.ForeignKey("patient.Patient", on_delete=models.CASCADE)
+    collected_at = models.DateTimeField(auto_now_add=True)
+    collected_by = models.ForeignKey("accounts.User", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"Sample {self.sample_id} for {self.patient}"
+
+
+class testRequest(models.Model):
+    sample = models.ForeignKey(
+        Sample, on_delete=models.CASCADE, related_name="test_requests"
+    )
+    test_order = models.ForeignKey(
+        TestOrder, on_delete=models.CASCADE, related_name="test_requests"
+    )
+    request_at = models.DateTimeField(auto_now_add=True)
+    is_completed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"Test Request for {self.sample}"

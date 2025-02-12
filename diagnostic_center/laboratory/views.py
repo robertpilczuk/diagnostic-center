@@ -1,15 +1,23 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ReportForm, LabTestForm, SampleRegistrationForm
-from .models import (
-    LabTest,
-    Appointment,
-    AppointmentRequest,
-    Report,
-)
+from .forms import ReportForm, LabTestForm, SampleRegistrationForm, SampleForm
+from .models import LabTest, Appointment, AppointmentRequest, Report, Sample
 
 
 def laboratory_home(request):
     return render(request, "laboratory/home.html")
+
+
+def register_sample(request):
+    if request.method == "POST":
+        form = SampleForm(request.POST)
+        if form.is_valid():
+            sample = form.save(commit=False)
+            sample.collected_by = request.user
+            sample.save()
+            return redirect("laboratory_dashboard")
+    else:
+        form = SampleForm()
+    return render(request, "laboratory/register_sample.html", {"form": form})
 
 
 def register_sample(request):
