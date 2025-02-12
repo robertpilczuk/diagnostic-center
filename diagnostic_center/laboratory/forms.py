@@ -32,10 +32,10 @@ class AppointmentForm(forms.ModelForm):
 #         fields = ["patient", "test_name", "sample_date"]
 
 
-class TestResultForm(forms.ModelForm):
-    class Meta:
-        model = TestResult
-        fields = ["patient", "test_name", "result"]
+# class TestResultForm(forms.ModelForm):
+#     class Meta:
+#         model = TestResult
+#         fields = ["patient", "test_name", "result"]
 
 
 class SampleForm(forms.ModelForm):

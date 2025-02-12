@@ -1,7 +1,9 @@
 from django.db import models
 from accounts.models import User
 from doctor.models import TestOrder
-from .models import TestRequest
+from django.utils import timezone
+
+# from .models import TestRequest
 
 
 class Laboratory(models.Model):
