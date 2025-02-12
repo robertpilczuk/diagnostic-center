@@ -49,8 +49,10 @@
                 <div id="doctor-fields" style="display: none;">
                     <label for="license_number">License Number:</label>
                     <input type="text" name="license_number" id="license_number">
-                    <label for="specialization">Specialization</label>
-                    <input type="text" name="specialization" id="specialization">
+                    <div class="form-group">
+                        {{ form.specialization.label_tag }}
+                        {{ form.specialization }}
+                    </div>
                 </div>
                 <div id="laboratory-fields" style="display: none;">
                     <label for="laboratory_name">Laboratory Name:</label>

@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from .models import User
+from doctor.models import SPECIALIZATION_CHOICES
 
 
 class UserRegistrationForm(UserCreationForm):
@@ -10,6 +11,7 @@ class UserRegistrationForm(UserCreationForm):
         ("is_laboratory", "Laboratory"),
     ]
     user_type = forms.ChoiceField(choices=USER_TYPE_CHOICES, required=True)
+    specialization = forms.ChoiceField(choices=SPECIALIZATION_CHOICES, required=False)
 
     pesel = forms.CharField(max_length=11, required=True)
     date_of_birth = forms.DateField(required=True)
@@ -23,6 +25,7 @@ class UserRegistrationForm(UserCreationForm):
             "password1",
             "password2",
             "user_type",
+            "specialization",
             "is_admin",
             "is_laboratory",
             "is_doctor",

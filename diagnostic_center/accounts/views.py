@@ -54,10 +54,11 @@ def register(request):
                     phone_number=request.POST.get("phone_number"),
                 )
             elif user.is_doctor:
+                specialization = form.cleaned_data.get("specialization")
                 Doctor.objects.create(
                     user=user,
                     license_number=request.POST.get("license_number"),
-                    specialization=request.POST.get("specialization"),
+                    specialization=specialization,
                 )
             elif user.is_laboratory:
                 Laboratory.objects.create(
