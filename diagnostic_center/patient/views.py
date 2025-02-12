@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from laboratory.models import LabTest, Appointment
+from laboratory.models import LabTest, Appointment, TestResult
 from .forms import AppointmentForm
 from doctor.models import Prescription
 from accounts.forms import PatientRegistrationForm
@@ -71,6 +71,13 @@ def confirm_reschedule_date(request, appointment_id):
 def view_test_result(request):
     tests = LabTest.objects.filter(patient=request.user)
     return render(request, "patient/view_test_result.html", {"tests": tests})
+
+
+def view_test_results(request):
+    test_results = TestResult.objects.filter(patient=request.user)
+    return render(
+        request, "patient/view_test_results.html", {"test_results": test_results}
+    )
 
 
 # Create your views here.

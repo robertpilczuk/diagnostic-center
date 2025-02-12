@@ -78,4 +78,16 @@ class Report(models.Model):
         return f"Report for appointment {self.appointment}"
 
 
+class TestResult(models.Model):
+    patient = models.ForeignKey(
+        User, on_delete=models.CASCADE, limit_choices_to={"is_patient": True}
+    )
+    test_name = models.CharField(max_length=100)
+    result = models.TextField()
+    result_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Test Result for {self.patient} - {self.test_name}"
+
+
 # Create your models here.

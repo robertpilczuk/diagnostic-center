@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>View Test Results</title>
+</head>
+
+<body>
+    <h1>Your Test Results</h1>
+    <ul>
+        {% for result in test_results %}
+        <li>{{ result.test_name }}: {{ result.result }}</li>
+        {% endfor %}
+    </ul>
+</body>
+
+</html>
