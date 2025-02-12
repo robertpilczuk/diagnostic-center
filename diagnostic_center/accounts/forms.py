@@ -4,6 +4,11 @@ from .models import User
 
 
 class UserRegistrationForm(UserCreationForm):
+    pesel = forms.CharField(max_length=11, required=True)
+    date_of_birth = forms.DateField(required=True)
+    address = forms.CharField(max_length=255, required=False)
+    phone_number = forms.CharField(max_length=15, required=False)
+
     class Meta:
         model = User
         fields = [
@@ -14,6 +19,10 @@ class UserRegistrationForm(UserCreationForm):
             "is_laboratory",
             "is_doctor",
             "is_patient",
+            "pesel",
+            "date_of_birth",
+            "address",
+            "phone_number",
         ]
 
 

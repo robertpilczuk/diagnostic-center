@@ -3,6 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from .forms import UserRegistrationForm, UserLoginForm, PatientRegistrationForm
 from accounts.models import User
+from patient.models import Patient
 
 
 def login_view(request):
@@ -33,6 +34,14 @@ def register(request):
         form = UserRegistrationForm(request.POST)
         if form.is_valid():
             user = form.save()
+            if user.is_patient:
+                Patient.objects.create(
+                    user=user,
+                    pesel=request.POST.get("pesel"),
+                    date_of_birth=request.POST.get("date_of_birth"),
+                    address=request.POST.get("address"),
+                    phone_number=request.POST.get("phone_number"),
+                )
             login(request, user)
             if user.is_patient:
                 return redirect("patient_home")

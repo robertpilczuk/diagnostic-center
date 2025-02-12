@@ -26,16 +26,16 @@ class AppointmentForm(forms.ModelForm):
         fields = ["laboratory", "date", "prescription"]
 
 
-class SampleRegistrationForm(forms.ModelForm):
-    class Meta:
-        model = Sample
-        fields = ["patient", "test_name", "sample_date"]
+# class SampleRegistrationForm(forms.ModelForm):
+#     class Meta:
+#         model = Sample
+#         fields = ["patient", "test_name", "sample_date"]
 
 
 class TestResultForm(forms.ModelForm):
     class Meta:
         model = TestResult
-        fields = ["patient", "test_name", "result", "result_date"]
+        fields = ["patient", "test_name", "result"]
 
 
 class SampleForm(forms.ModelForm):

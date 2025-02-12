@@ -13,9 +13,12 @@
 <body>
     <div class="auth-container">
         <div class="auth-card">
+            {% extends 'base.html' %}
+            {% block content %}
             <h2>Register</h2>
             <form method="post" class="auth-form">
                 {% csrf_token %}
+                {{ form.as_p }}
                 <div class="form-group">
                     {{ form.username.label_tag }}
                     {{ form.username }}
@@ -34,6 +37,7 @@
                 </div>
                 <button type="submit" class="auth-button">Register</button>
             </form>
+            {% end block %}
 
             {% if form.errors %}
             <div class="auth-errors">

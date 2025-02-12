@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import ReportForm, LabTestForm, SampleRegistrationForm, SampleForm
+from .forms import ReportForm, LabTestForm, SampleForm
 from .models import LabTest, Appointment, AppointmentRequest, Report, Sample
 
 
@@ -20,15 +20,15 @@ def register_sample(request):
     return render(request, "laboratory/register_sample.html", {"form": form})
 
 
-def register_sample(request):
-    if request.method == "POST":
-        form = SampleRegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("view_test_results")
-    else:
-        form = SampleRegistrationForm()
-    return render(request, "laboratory/register_sample.html", {"form": form})
+# def register_sample(request):
+#     if request.method == "POST":
+#         form = SampleRegistrationForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect("view_test_results")
+#     else:
+#         form = SampleRegistrationForm()
+#     return render(request, "laboratory/register_sample.html", {"form": form})
 
 
 def add_lab_test(request):
