@@ -3,6 +3,7 @@ from laboratory.models import LabTest, Appointment, TestResult
 from .forms import AppointmentForm
 from doctor.models import Prescription
 from accounts.forms import PatientRegistrationForm
+from .models import Patient
 
 
 def patient_home(request):
@@ -74,7 +75,9 @@ def view_test_result(request):
 
 
 def view_test_results(request):
-    test_results = TestResult.objects.filter(patient=request.user)
+    patient = Patient.objects.get(user=request.user)
+    # test_results = TestResult.objects.filter(patient=request.user)
+    test_results = patient.test_results.all()
     return render(
         request, "patient/view_test_results.html", {"test_results": test_results}
     )

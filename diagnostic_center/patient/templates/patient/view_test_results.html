@@ -6,12 +6,37 @@
 </head>
 
 <body>
+    {% extends 'base.html' %}
+    {% block content %}
     <h1>Your Test Results</h1>
-    <ul>
-        {% for result in test_results %}
-        <li>{{ result.test_name }}: {{ result.result }}</li>
-        {% endfor %}
-    </ul>
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>Test Name</th>
+                <th>Date</th>
+                <th>Doctor</th>
+                <th>Download</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for result in test_results %}
+            <tr>
+                <td>{{ result.test_name }}</td>
+                <td>{{ result.created_at }}</td>
+                <td>{{ result.doctor.user.get_full_name }}</td>
+                <td>
+                    {% if result.pdf_file %}
+                    <a href="{url 'download_test_result' result.id'}" class="btn btn-primary">Download PDF</a>
+                    {% else %}
+                    No PDF available
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endblock %}
 </body>
 
 </html>

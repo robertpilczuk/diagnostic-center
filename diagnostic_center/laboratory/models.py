@@ -1,6 +1,7 @@
 from django.db import models
 from accounts.models import User
-from doctor.models import TestOrder
+from doctor.models import TestOrder, Doctor
+from patient.models import Patient
 from django.utils import timezone
 
 # from .models import TestRequest
@@ -130,12 +131,20 @@ class TestRequest(models.Model):
 
 
 class TestResult(models.Model):
+    patient = models.ForeignKey(
+        Patient, on_delete=models.CASCADE, related_name="test_results"
+    )
+    doctor = models.ForeignKey(
+        Doctor, on_delete=models.CASCADE, related_name="test_results"
+    )
+    test_name = models.CharField(max_length=255)
     test_request = models.OneToOneField(
         TestRequest, on_delete=models.CASCADE, related_name="test_result"
     )
     result = models.TextField()
     entered_by = models.ForeignKey("accounts.User", on_delete=models.CASCADE)
     entered_at = models.DateTimeField(auto_now_add=True)
+    pdf_file = models.FileField(upload_to="test_results/", blank=True, null=True)
 
     def __str__(self):
         return f"Test Result for {self.test_request}"

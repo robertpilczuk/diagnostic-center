@@ -35,4 +35,9 @@ urlpatterns = [
         views.enter_test_result,
         name="enter_test_result",
     ),
+    path(
+        "download_test_result/<int:test_result_id>/",
+        views.download_test_result,
+        name="download_test_result",
+    ),
 ]

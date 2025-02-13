@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse
 from .forms import ReportForm, LabTestForm, SampleForm, TestResultForm
 from .models import (
     LabTest,
@@ -9,6 +10,7 @@ from .models import (
     TestRequest,
     TestResult,
 )
+from .utils import generate_pdf
 
 
 def laboratory_home(request):
@@ -36,6 +38,10 @@ def enter_test_result(request, test_request_id):
             test_result = form.save(commit=False)
             test_result.test_request = test_request
             test_result.entered_by = request.user
+
+            pdf_buffer = generate_pdf(test_result)
+            test_result.pdf_file.save(f"test_result_{test_result.id}.pdf", pdf_buffer)
+
             test_result.save()
             test_request.is_completed = True
             test_request.save()
@@ -47,17 +53,6 @@ def enter_test_result(request, test_request_id):
         "laboratory/enter_test_result.html",
         {"form": form, "test_request": test_request},
     )
-
-
-# def register_sample(request):
-#     if request.method == "POST":
-#         form = SampleRegistrationForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect("view_test_results")
-#     else:
-#         form = SampleRegistrationForm()
-#     return render(request, "laboratory/register_sample.html", {"form": form})
 
 
 def add_lab_test(request):
@@ -135,3 +130,19 @@ def upload_report(request, appointment_id):
 def view_reports(request):
     reports = Report.objects.all()
     return render(request, "laboratory/view_reports.html", {"reports": reports})
+
+
+def add_test_result(request):
+    if request.method == "POST":
+        form = TestResultForm
+
+
+def download_test_result(request, test_result_id):
+    test_result = get_object_or_404(TestResult, id=test_result_id)
+    if test_result.pdf_file:
+        response = HttpResponse(test_result.pdf_file, content_type="application/pdf")
+        response["Content-Disposition"] = (
+            f'attachment; filename="{test_result.pdf_file.name}"'
+        )
+        return response
+    return HttpResponse("File not found", status=404)
