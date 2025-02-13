@@ -1,3 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Patient Home - Diagnostic Center{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Welcome to Your Patient Dashboard</h2>
+    <p>Manage your appointments and view your test results here.</p>
+    <div class="dashboard-links">
+        <ul>
+            <li><a href="{% url 'view_tests' %}">View Tests</a></li>
+            <li><a href="{% url 'book_appointment' %}">Book Appointment</a></li>
+            <li><a href="{% url 'cancel_appointment' %}">Cancel Appointment</a></li>
+            <li><a href="{% url 'view_prescription' %}">View Prescription</a></li>
+            <li><a href="{% url 'confirm_reschedule_date' %}">Confirm Reschedule Date</a></li>
+            <li><a href="{% url 'view_test_results' %}">View Test Results</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+
+<!-- 
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -56,4 +79,4 @@
 
 </body>
 
-</html>
+</html> -->

@@ -1,15 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doctor Home</title>
-</head>
+{% block title %}Doctor Home - Diagnostic Center{% endblock %}
 
-<body>
-    <h1>Welcome to the Doctor's Dashboard</h1>
-    <p>This is the home page for doctors.</p>
-</body>
-
-</html>
+{% block content %}
+<div class="container">
+    <h2>Welcome to the Doctor Dashboard</h2>
+    <p>Manage your patients and appointments here.</p>
+    <div class="dashboard-links">
+        <ul>
+            <li><a href="{% url 'search_patient' %}">Search Patient</a></li>
+            <li><a href="{% url 'write_prescription' %}">Write Prescription</a></li>
+            <li><a href="{% url 'view_test_results' %}">View Test Results</a></li>
+            <li><a href="{% url 'view_prescriptions' %}">View Prescriptions</a></li>
+            <li><a href="{% url 'order_lab_test' %}">Order Lab Test</a></li>
+            <li><a href="{% url 'create_test_order' %}">Create Test Order</a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
