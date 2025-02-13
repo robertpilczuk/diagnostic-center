@@ -1,16 +1,11 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
-    <title>View Test Results</title>
-</head>
+{% block title %}View Test Results - Diagnostic Center{% endblock %}
 
-<body>
-    {% extends 'base.html' %}
-    {% block content %}
+{% block content %}
+<div class="container">
     <h1>Your Test Results</h1>
     <table class="table">
-
         <thead>
             <tr>
                 <th>Test Name</th>
@@ -27,7 +22,7 @@
                 <td>{{ result.doctor.user.get_full_name }}</td>
                 <td>
                     {% if result.pdf_file %}
-                    <a href="{url 'download_test_result' result.id'}" class="btn btn-primary">Download PDF</a>
+                    <a href="{% url 'download_test_result' result.id %}" class="btn btn-primary">Download PDF</a>
                     {% else %}
                     No PDF available
                     {% endif %}
@@ -36,7 +31,5 @@
             {% endfor %}
         </tbody>
     </table>
-    {% endblock %}
-</body>
-
-</html>
+</div>
+{% endblock %}

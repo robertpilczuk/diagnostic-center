@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
-    <title>Add Lab Test</title>
-</head>
+{% block title %}Add Lab Test - Diagnostic Center{% endblock %}
 
-<body>
+{% block content %}
+<div class="container">
     <h2>Add Lab Test</h2>
     <form method="post">
-        {%csrf_token%}
-        {{form.as_p}}
-        <button type="submit">Add</button>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="auth-button">Submit</button>
     </form>
-</body>
-
-</html>
+</div>
+{% endblock %}

@@ -1,18 +1,14 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
-    <title>View Tests</title>
-</head>
+{% block title %}View Tests - Diagnostic Center{% endblock %}
 
-<body>
-    <h2>View Tests</h2>
+{% block content %}
+<div class="container">
+    <h2>Your Tests</h2>
     <ul>
         {% for test in tests %}
-        <li>{{test.name}} - {{test.description}}</li>
-        {%endfor%}
+        <li>{{ test.test_name }} - {{ test.result }}</li>
+        {% endfor %}
     </ul>
-
-</body>
-
-</html>
+</div>
+{% endblock %}

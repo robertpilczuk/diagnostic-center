@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
-    <title>View Prescriptions</title>
-</head>
+{% block title %}View Prescriptions - Diagnostic Center{% endblock %}
 
-<body>
-    <h2>View Prescriptions</h2>
+{% block content %}
+<div class="container">
+    <h2>Prescriptions</h2>
     <ul>
         {% for prescription in prescriptions %}
-        <li>{{prescription.description}}</li>
+        <li>{{ prescription.patient }} - {{ prescription.description }}</li>
         {% endfor %}
     </ul>
-</body>
-
-</html>
+</div>
+{% endblock %}

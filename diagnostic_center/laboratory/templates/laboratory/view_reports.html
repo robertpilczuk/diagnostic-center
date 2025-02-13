@@ -1,18 +1,14 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
-    <title>View Reports</title>
-</head>
+{% block title %}View Reports - Diagnostic Center{% endblock %}
 
-<body>
-    <h2>View Reports</h2>
+{% block content %}
+<div class="container">
+    <h2>Reports</h2>
     <ul>
-        { % for report in reports %}
-        <li>{{report.appointment.patient.username}} - {{report.uploaded_at}} - <a
-                href="{{report.report_file.url}}">Download</a></li>
+        {% for report in reports %}
+        <li>{{ report.appointment }} - <a href="{{ report.report_file.url }}">Download</a></li>
         {% endfor %}
     </ul>
-</body>
-
-</html>
+</div>
+{% endblock %}

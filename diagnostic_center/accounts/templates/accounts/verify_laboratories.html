@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
-    <title>Verify Laboratories</title>
-</head>
+{% block title %}Verify Laboratory - Diagnostic Center{% endblock %}
 
-<body>
+{% block content %}
+<div class="container">
     <h2>Verify Laboratory</h2>
-    <p>Are you sure you want to verify {{laboratory.username}} ?</p>
+    <p>Are you sure you want to verify this laboratory?</p>
     <form method="post">
-        {%csrf_token%>}
-        <button type="'submit">Verify</button>
+        {% csrf_token %}
+        <button type="submit" class="auth-button">Verify</button>
     </form>
-</body>
-
-</html>
+</div>
+{% endblock %}

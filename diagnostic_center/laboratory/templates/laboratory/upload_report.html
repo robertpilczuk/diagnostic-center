@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
-    <title>Upload Report</title>
-</head>
+{% block title %}Upload Report - Diagnostic Center{% endblock %}
 
-<body>
-    <h2>Upload Report for Appointment</h2>
+{% block content %}
+<div class="container">
+    <h2>Upload Report</h2>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Upload</button>
+        <button type="submit" class="auth-button">Upload</button>
     </form>
-</body>
-
-</html>
+</div>
+{% endblock %}

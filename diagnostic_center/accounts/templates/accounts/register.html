@@ -11,6 +11,9 @@
 </head>
 
 <body>
+    {% extends 'base.html' %}
+    {% block title %}Register - Diagnostic Center{% endblock %}
+    {% block content %}
     <div class="auth-container">
         <div class="auth-card">
             <h2>Register</h2>
@@ -76,6 +79,7 @@
             <p class="auth-link">Already have an account? <a href="{% url 'login' %}">Login here</a></p>
         </div>
     </div>
+    {% endblock %}
 
     <script>
         document.getElementById('id_user_type').addEventListener('change', function () {

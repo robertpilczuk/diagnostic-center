@@ -1,17 +1,17 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
-    <title>Confirm Reschedule Date</title>
-</head>
+{% block title %}Confirm Reschedule Date - Diagnostic Center{% endblock %}
 
-<body>
+{% block content %}
+<div class="container">
     <h2>Confirm Reschedule Date</h2>
     <form method="post">
-        {%csrf_token%}
-        <input type="datetime-local" name="new_date">
-        <button type="submit">Confirm</button>
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="new_date">New Date:</label>
+            <input type="date" id="new_date" name="new_date">
+        </div>
+        <button type="submit" class="auth-button">Confirm</button>
     </form>
-</body>
-
-</html>
+</div>
+{% endblock %}

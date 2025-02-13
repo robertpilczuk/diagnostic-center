@@ -1,20 +1,14 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
-    <title>View Appointment Requests</title>
-</head>
+{% block title %}View Appointment Requests - Diagnostic Center{% endblock %}
 
-<body>
-    <h2>View Appointment Requests</h2>
+{% block content %}
+<div class="container">
+    <h2>Appointment Requests</h2>
     <ul>
         {% for appointment in appointments %}
-        <li>{{appointment.patient.username}} - {{appointment.date}} - {{request.status}} - <a
-                href="{% url 'accept_appointment' appointment.id %}">Accept</a> | <a
-                href="{% url 'reschedule_appointment' appointment.id %}">Reschedule</a> | <a
-                href="{% url 'reject_appointment' appointment.id %}">Reject</a></li>
+        <li>{{ appointment.patient }} - {{ appointment.date }}</li>
         {% endfor %}
     </ul>
-</body>
-
-</html>
+</div>
+{% endblock %}

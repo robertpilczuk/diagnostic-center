@@ -1,17 +1,19 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
-    <title>View Doctors</title>
-</head>
+{% block title %}View Doctors - Diagnostic Center{% endblock %}
 
-<body>
-    <h2>View Doctors</h2>
+{% block content %}
+<div class="container">
+    <h2>Doctors</h2>
     <ul>
         {% for doctor in doctors %}
-        <li>{{ doctor.username }} - <a href="{% url 'verify_doctor' doctor.id%}">Verify</a></li>
+        <li>
+            <strong>{{ doctor.user.get_full_name }}</strong>
+            <p>Email: {{ doctor.user.email }}</p>
+            <p>License Number: {{ doctor.license_number }}</p>
+            <p>Specialization: {{ doctor.specialization }}</p>
+        </li>
         {% endfor %}
     </ul>
-</body>
-
-</html>
+</div>
+{% endblock %}

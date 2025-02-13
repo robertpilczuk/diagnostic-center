@@ -1,20 +1,14 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
-    <title>Enter Test Result</title>
-</head>
+{% block title %}Enter Test Result - Diagnostic Center{% endblock %}
 
-<body>
-    {% extends 'base.html' %}
-    {% block content %}
-    <h2>Enter Test Result for {{ test_request }}</h2>
+{% block content %}
+<div class="container">
+    <h2>Enter Test Result</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="auth-button">Submit</button>
     </form>
-    {% endblock %}
-</body>
-
-</html>
+</div>
+{% endblock %}

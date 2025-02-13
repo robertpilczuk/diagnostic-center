@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Diagnostic Center{% endblock %}</title>
+    {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -12,7 +13,8 @@
 <body>
     <header>
         <div class="header-content">
-            <h1>Diagnostic Center</h1>
+            <h1>Welcome to Our Diagnostic Center</h1>
+            <p>Your Health, Our Priority</p>
             <nav>
                 <ul>
                     <li><a href="{% url 'home' %}">Home</a></li>
@@ -36,7 +38,14 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 Diagnostic Center. All rights reserved.</p>
+        <div class="footer-content">
+            <p>&copy; 2025 Diagnostic Center RP MP. All rights reserved.</p>
+            <ul class="social-links">
+                <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+            </ul>
+        </div>
     </footer>
 </body>
 

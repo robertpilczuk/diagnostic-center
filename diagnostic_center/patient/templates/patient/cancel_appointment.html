@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
-    <title>Cancel Appointment</title>
-</head>
+{% block title %}Cancel Appointment - Diagnostic Center{% endblock %}
 
-<body>
+{% block content %}
+<div class="container">
     <h2>Cancel Appointment</h2>
+    <p>Are you sure you want to cancel this appointment?</p>
     <form method="post">
-        {%csrf_token%}
-        {{form.as_p}}
-        <button type="submit"></button>
+        {% csrf_token %}
+        <button type="submit" class="auth-button">Cancel</button>
     </form>
-</body>
-
-</html>
+</div>
+{% endblock %}

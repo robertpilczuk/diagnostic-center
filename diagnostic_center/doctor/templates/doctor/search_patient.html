@@ -1,22 +1,17 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
-    <title>Search Patient</title>
-</head>
+{% block title %}Search Patient - Diagnostic Center{% endblock %}
 
-<body>
+{% block content %}
+<div class="container">
     <h2>Search Patient</h2>
     <form method="post">
-        {%csrf_token%}
-        <input type="text" name="query" placeholder="Search by username">
-        <button type="submit">Search</button>
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="search">Search:</label>
+            <input type="text" id="search" name="search">
+        </div>
+        <button type="submit" class="auth-button">Search</button>
     </form>
-    <ul>
-        {% for patient in patients %}
-        <li>{{patient.username}}</li>
-        {% endfor %}
-    </ul>
-</body>
-
-</html>
+</div>
+{% endblock %}

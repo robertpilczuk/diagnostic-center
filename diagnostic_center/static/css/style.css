@@ -16,7 +16,7 @@ body {
 header {
     background: #007bff;
     color: #fff;
-    padding: 1rem 0;
+    padding: 2rem 0;
     text-align: center;
 }
 
@@ -25,37 +25,150 @@ header h1 {
     margin-bottom: 0.5rem;
 }
 
-header nav ul {
+header p {
+    font-size: 1.2rem;
+}
+
+/* Nawigacja */
+nav {
+    background: #333;
+    padding: 1rem 0;
+}
+
+nav ul {
     list-style: none;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-header nav ul li {
+nav ul li {
     margin: 0 1rem;
 }
 
-header nav ul li a {
+nav ul li a {
     color: #fff;
     text-decoration: none;
     font-size: 1.1rem;
     transition: color 0.3s ease;
 }
 
-header nav ul li a:hover {
-    color: #ffdd57;
+nav ul li a:hover {
+    color: #007bff;
+}
+
+/* Kontener główny */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2rem auto;
+    max-width: 1200px;
+    padding: 0 1rem;
+}
+
+/* Panel boczny */
+.sidebar {
+    flex: 1;
+    background: #fff;
+    padding: 1rem;
+    margin-right: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    color: #007bff;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    margin: 1rem 0;
+}
+
+.sidebar ul li a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    color: #007bff;
 }
 
 /* Główna treść */
 main {
-    padding: 2rem 0;
+    flex: 3;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
+main section {
+    margin-bottom: 2rem;
+}
+
+main h2 {
+    font-size: 2rem;
+    color: #007bff;
+    margin-bottom: 1rem;
+}
+
+/* Karty usług */
+.service-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.service-card {
+    flex: 1 1 calc(33.333% - 1rem);
+    background: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 5px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.service-card i {
+    font-size: 2rem;
+    color: #007bff;
+    margin-bottom: 1rem;
+}
+
+.service-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.service-card p {
+    font-size: 1rem;
+    color: #666;
+}
+
+/* Sekcja kontaktowa */
+.contact-info {
+    list-style: none;
+}
+
+.contact-info li {
+    margin: 1rem 0;
+    font-size: 1.1rem;
+}
+
+.contact-info i {
+    margin-right: 0.5rem;
+    color: #007bff;
 }
 
 /* Stopka */
@@ -67,66 +180,79 @@ footer {
     margin-top: 2rem;
 }
 
-footer p {
-    margin: 0;
+footer .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
-/* Przyciski */
-.btn {
+footer .social-links {
+    list-style: none;
+    display: flex;
+}
+
+footer .social-links li {
+    margin: 0 0.5rem;
+}
+
+footer .social-links a {
+    color: #fff;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+footer .social-links a:hover {
+    color: #007bff;
+}
+
+/* Responsywność */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        margin-right: 0;
+        margin-bottom: 1rem;
+    }
+
+    .service-card {
+        flex: 1 1 100%;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 0.5rem 0;
+    }
+}
+
+/* Styl dla linków w panelu bocznym */
+.dashboard-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.dashboard-links li {
+    margin-bottom: 10px;
+}
+
+.dashboard-links a {
     display: inline-block;
-    padding: 0.75rem 1.5rem;
+    padding: 10px 20px;
     background-color: #007bff;
     color: #fff;
-    border: none;
-    border-radius: 4px;
     text-decoration: none;
+    border-radius: 5px;
     transition: background-color 0.3s ease;
 }
 
-.btn:hover {
+.dashboard-links a:hover {
     background-color: #0056b3;
-}
-
-/* Formularze */
-.form-group {
-    margin-bottom: 1rem;
-}
-
-.form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: bold;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-}
-
-/* Tabele */
-.table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 1rem;
-}
-
-.table th,
-.table td {
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    text-align: left;
-}
-
-.table th {
-    background-color: #007bff;
-    color: #fff;
-}
-
-.table tr:nth-child(even) {
-    background-color: #f9f9f9;
 }

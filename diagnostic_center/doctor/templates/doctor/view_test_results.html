@@ -1,23 +1,19 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
-    <title>View Test Results</title>
-</head>
+{% block title %}View Test Results - Diagnostic Center{% endblock %}
 
-<body>
-    {% extends 'base.html' %}
-    {% block content %}
-    <h2>Test results for {{ test_order }}</h2>
+{% block content %}
+<div class="container">
+    <h2>Test Results for {{ test_order }}</h2>
     <table class="table">
-        <thread>
+        <thead>
             <tr>
                 <th>Test Request</th>
                 <th>Result</th>
                 <th>Entered By</th>
                 <th>Entered At</th>
             </tr>
-        </thread>
+        </thead>
         <tbody>
             {% for result in test_results %}
             <tr>
@@ -29,12 +25,5 @@
             {% endfor %}
         </tbody>
     </table>
-    {% endblock %}
-    <ul>
-        {% for test in tests %}
-        <li>{{test.name}} - {{test.description}}</li>
-        {% endfor %}
-    </ul>
-</body>
-
-</html>
+</div>
+{% endblock %}
