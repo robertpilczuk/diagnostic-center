@@ -6,6 +6,12 @@
 <div class="container">
     <h2>Verify Doctor</h2>
     <p>Are you sure you want to verify this doctor?</p>
+    <div class="doctor-info">
+        <p><strong>Name:</strong> {{ doctor.user.get_full_name }}</p>
+        <p><strong>Email:</strong> {{ doctor.user.email }}</p>
+        <p><strong>License Number:</strong> {{ doctor.license_number }}</p>
+        <p><strong>Specialization:</strong> {{ doctor.specialization }}</p>
+    </div>
     <form method="post">
         {% csrf_token %}
         <button type="submit" class="auth-button">Verify</button>

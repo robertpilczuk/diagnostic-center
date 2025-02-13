@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html>
+{% extends 'base.html' %}
 
-<head>
-    <title>View Laboratories</title>
-</head>
+{% block title %}View Laboratories - Diagnostic Center{% endblock %}
 
-<body>
-    <h2>View Laboratories</h2>
+{% block content %}
+<div class="container">
+    <h2>Laboratories</h2>
     <ul>
-        {% for laboratory in laboratories%}
-        <li>{{ laboratory.username }} - <a href="{%url 'verify_laboratory' laboratory.id}">Verify</a></li>
+        {% for laboratory in laboratories %}
+        <li>{{ laboratory.user.username }} - {{ laboratory.user.email }}</li>
         {% endfor %}
     </ul>
-</body>
-
-</html>
+</div>
+{% endblock %}
