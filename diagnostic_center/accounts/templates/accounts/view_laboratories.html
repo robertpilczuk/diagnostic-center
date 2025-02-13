@@ -7,7 +7,7 @@
     <h2>Laboratories</h2>
     <ul>
         {% for laboratory in laboratories %}
-        <li>{{ laboratory.user.username }} - {{ laboratory.user.email }}</li>
+        <li>{{ laboratory.laboratory_name }} - {{ laboratory.address }}</li>
         {% endfor %}
     </ul>
 </div>
