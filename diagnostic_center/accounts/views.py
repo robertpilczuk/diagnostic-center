@@ -8,6 +8,10 @@ from doctor.models import Doctor
 from laboratory.models import Laboratory
 
 
+def accounts_home(request):
+    return render(request, "accounts/home.html")
+
+
 def login_view(request):
     if request.method == "POST":
         form = AuthenticationForm(request, data=request.POST)
