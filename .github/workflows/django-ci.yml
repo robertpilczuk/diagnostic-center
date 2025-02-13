@@ -42,6 +42,7 @@ jobs:
           python -m venv venv
           source venv/bin/activate
           pip install -r requirements.txt
+          pip install reportlab
 
       - name: Set environment variable
         run: echo "DJANGO_SETTINGS_MODULE=diagnostic_center.settings" >> $GITHUB_ENV
