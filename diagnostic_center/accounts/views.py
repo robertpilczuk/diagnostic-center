@@ -74,7 +74,6 @@ def register(request):
 
             if user.is_patient:
                 return redirect("patient_home")
-
             return redirect("login")
         else:
             print("Form errors:", form.errors)

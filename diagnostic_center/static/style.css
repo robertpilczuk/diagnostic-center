@@ -64,6 +64,9 @@ nav ul li a:hover {
     margin: 2rem auto;
     max-width: 1200px;
     padding: 0 1rem;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Panel boczny */
@@ -103,10 +106,8 @@ nav ul li a:hover {
 /* Główna treść */
 main {
     flex: 3;
-    background: #fff;
     padding: 2rem;
     border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 main section {
@@ -212,6 +213,7 @@ footer .social-links a:hover {
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
+        padding: 10px;
     }
 
     .sidebar {
@@ -234,6 +236,10 @@ footer .social-links a:hover {
 }
 
 /* Styl dla linków w panelu bocznym */
+.dashboard-links {
+    margin-top: 20px;
+}
+
 .dashboard-links ul {
     list-style: none;
     padding: 0;
@@ -254,5 +260,38 @@ footer .social-links a:hover {
 }
 
 .dashboard-links a:hover {
+    background-color: #0056b3;
+}
+
+/* Styl dla sekcji weryfikacji doktora */
+.doctor-info {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.doctor-info p {
+    margin: 10px 0;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.doctor-info strong {
+    font-weight: bold;
+    color: #007bff;
+}
+
+.auth-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.auth-button:hover {
     background-color: #0056b3;
 }
