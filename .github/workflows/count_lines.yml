@@ -1,0 +1,21 @@
+name: Count Lines of Code
+
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  count_lines:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Count lines of code
+        run: |
+          echo "Counting lines of code..."
+          find . -name '*.py' -or -name '*.html' | xargs wc -l > line_count.txt
+          echo "Total lines of code:" >> line_count.txt
+          cat line_count.txt
