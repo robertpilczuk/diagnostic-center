@@ -295,3 +295,71 @@ footer .social-links a:hover {
 .auth-button:hover {
     background-color: #0056b3;
 }
+
+.doctor-dashboard {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 2rem auto;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-text {
+    flex: 2;
+}
+
+.dashboard-links {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.dashboard-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.dashboard-links li {
+    width: 100%;
+}
+
+.dashboard-links a {
+    display: block;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.dashboard-links a:hover {
+    background-color: #0056b3;
+}
+
+/* Responsywność */
+@media (max-width: 768px) {
+    .doctor-dashboard {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dashboard-links {
+        align-items: center;
+        width: 100%;
+    }
+
+    .dashboard-links a {
+        width: auto;
+        min-width: 200px;
+    }
+}

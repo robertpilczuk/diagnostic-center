@@ -3,9 +3,11 @@
 {% block title %}Doctor Home - Diagnostic Center{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h2>Welcome to the Doctor Dashboard</h2>
-    <p>Manage your patients and appointments here.</p>
+<div class="doctor-dashboard">
+    <div class="dashboard-text">
+        <h2>Welcome to the Doctor Dashboard</h2>
+        <p>Manage your patients and appointments here.</p>
+    </div>
     <div class="dashboard-links">
         <ul>
             <li><a href="{% url 'search_patient' %}">Search Patient</a></li>
