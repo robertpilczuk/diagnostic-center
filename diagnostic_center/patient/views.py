@@ -7,7 +7,10 @@ from .models import Patient
 
 
 def patient_home(request):
-    return render(request, "patient/patient_home.html")
+    appointments = Appointment.objects.filter(patient=request.user)
+    return render(request, "patient/patient_home.html", {"appointments": appointments})
+
+    # return render(request, "patient/patient_home.html")
 
 
 def patient_register(request):

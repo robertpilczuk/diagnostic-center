@@ -10,6 +10,10 @@
         <form method="post" class="auth-form">
             {% csrf_token %}
             <div class="form-group">
+                {{ form.user_type.label_tag }}
+                {{ form.user_type }}
+            </div>
+            <div class="form-group">
                 {{ form.username.label_tag }}
                 {{ form.username }}
             </div>
@@ -25,10 +29,7 @@
                 {{ form.password2.label_tag }}
                 {{ form.password2 }}
             </div>
-            <div class="form-group">
-                {{ form.user_type.label_tag }}
-                {{ form.user_type }}
-            </div>
+            <div id="empty-fields" style="display: none;"></div>
             <div id="patient-fields" style="display: none;">
                 <label for="pesel">PESEL:</label>
                 <input type="text" name="pesel" id="pesel">
@@ -71,18 +72,56 @@
 </div>
 
 <script>
-    document.getElementById('id_user_type').addEventListener('change', function () {
-        var userType = this.value;
-        document.getElementById('patient-fields').style.display = 'none';
-        document.getElementById('doctor-fields').style.display = 'none';
-        document.getElementById('laboratory-fields').style.display = 'none';
-        if (userType === 'is_patient') {
-            document.getElementById('patient-fields').style.display = 'block';
-        } else if (userType === 'is_doctor') {
-            document.getElementById('doctor-fields').style.display = 'block';
-        } else if (userType === 'is_laboratory') {
-            document.getElementById('laboratory-fields').style.display = 'block';
+    document.addEventListener("DOMContentLoaded", function () {
+        var userTypeField = document.querySelector("select[name='user_type']"); // Pobierz select dynamicznie
+
+        var patientFields = document.getElementById('patient-fields');
+        var doctorFields = document.getElementById('doctor-fields');
+        var laboratoryFields = document.getElementById('laboratory-fields');
+
+        // Jeśli nie znaleziono pola userTypeField, nie wykonuj skryptu
+        if (!userTypeField) {
+            console.error("Nie znaleziono pola user_type!");
+            return;
         }
+
+        // Ukryj wszystkie pola na start
+        patientFields.style.display = 'none';
+        doctorFields.style.display = 'none';
+        laboratoryFields.style.display = 'none';
+
+        userTypeField.addEventListener('change', function () {
+            var userType = this.value;
+
+            // Ukrywamy wszystkie sekcje
+            patientFields.style.display = 'none';
+            doctorFields.style.display = 'none';
+            laboratoryFields.style.display = 'none';
+
+            // Pokazujemy tylko odpowiednie pola
+            if (userType === 'is_patient') {
+                patientFields.style.display = 'block';
+            } else if (userType === 'is_doctor') {
+                doctorFields.style.display = 'block';
+            } else if (userType === 'is_laboratory') {
+                laboratoryFields.style.display = 'block';
+            }
+        });
     });
+    // document.getElementById('id_user_type').addEventListener('change', function () {
+    //     var userType = this.value;
+    //     document.getElementById('patient-fields').style.display = 'none';
+    //     document.getElementById('doctor-fields').style.display = 'none';
+    //     document.getElementById('laboratory-fields').style.display = 'none';
+    //     if (userType === 'is_empty') {
+    //         document.getElementById('empty-fields').style.display = 'none';
+    //     } else if (userType === 'is_patient') {
+    //         document.getElementById('patient-fields').style.display = 'block';
+    //     } else if (userType === 'is_doctor') {
+    //         document.getElementById('doctor-fields').style.display = 'block';
+    //     } else if (userType === 'is_laboratory') {
+    //         document.getElementById('laboratory-fields').style.display = 'block';
+    //     }
+    // });
 </script>
 {% endblock %}

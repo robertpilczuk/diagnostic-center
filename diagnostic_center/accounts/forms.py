@@ -6,6 +6,7 @@ from doctor.models import SPECIALIZATION_CHOICES
 
 class UserRegistrationForm(UserCreationForm):
     USER_TYPE_CHOICES = [
+        ("is_empty", "Choose type"),
         ("is_patient", "Patient"),
         ("is_doctor", "Doctor"),
         ("is_laboratory", "Laboratory"),
@@ -21,15 +22,16 @@ class UserRegistrationForm(UserCreationForm):
     class Meta:
         model = User
         fields = [
+            "user_type",
             "username",
             "password1",
             "password2",
-            "user_type",
             "specialization",
             "is_admin",
             "is_laboratory",
             "is_doctor",
             "is_patient",
+            # "is_empty",
             "pesel",
             "date_of_birth",
             "address",

@@ -10,7 +10,9 @@
         <ul>
             <li><a href="{% url 'view_tests' %}">View Tests</a></li>
             <li><a href="{% url 'book_appointment' %}">Book Appointment</a></li>
-            <li><a href="{% url 'cancel_appointment' %}">Cancel Appointment</a></li>
+            {% for appointment in appointments %}
+            <li><a href="{% url 'cancel_appointment' appointment_id%}">Cancel Appointment</a></li>
+            {% endfor %}
             <li><a href="{% url 'view_prescription' %}">View Prescription</a></li>
             <li><a href="{% url 'confirm_reschedule_date' %}">Confirm Reschedule Date</a></li>
             <li><a href="{% url 'view_test_results' %}">View Test Results</a></li>

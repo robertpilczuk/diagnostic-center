@@ -41,6 +41,8 @@ def register(request):
         if form.is_valid():
             user = form.save(commit=False)
             user_type = form.cleaned_data.get("user_type")
+            if user_type == "is_empty":
+                user.is_empty == True
             if user_type == "is_patient":
                 user.is_patient = True
             elif user_type == "is_doctor":
