@@ -17,13 +17,16 @@ def search_patient(request):
     return render(request, "doctor/search_patient.html")
 
 
-def write_prescription(request):
+def write_prescription(request, patient_id):
+    patient = get_object_or_404(User, id=patient_id, is_patient=True)
     if request.method == "POST":
         form = PrescriptionForm(request.POST)
-        prescription = form.save(commit=False)
-        prescription.doctor = request.user
-        prescription.save()
-        return redirect("prescription_list")
+        if form.is_valid():
+            prescription = form.save(commit=False)
+            prescription.doctor = request.user
+            prescription.patient = patient
+            prescription.save()
+            return redirect("prescription_listprescription_list")
     else:
         form = PrescriptionForm()
     return render(request, "doctor/write_prescription.html", {"form": form})
