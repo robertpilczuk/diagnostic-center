@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import PrescriptionForm, OrderLabTestForm, TestOrderForm
 from .models import Prescription, TestOrder
 from laboratory.models import LabTest, TestResult
+from accounts.models import User
 
 
 def doctor_home(request):
@@ -10,7 +11,7 @@ def doctor_home(request):
 
 def search_patient(request):
     if request.method == "POST":
-        query = request.POST.get("query")
+        query = request.POST.get("query", "")
         patients = User.objects.filter(is_patient=True, username__icontains=query)
         return render(request, "doctor/search_patient.html", {"patients": patients})
     return render(request, "doctor/search_patient.html")

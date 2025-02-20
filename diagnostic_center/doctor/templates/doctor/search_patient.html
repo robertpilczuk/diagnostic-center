@@ -13,5 +13,20 @@
         </div>
         <button type="submit" class="auth-button">Search</button>
     </form>
+
+    {% if patients %}
+    <h3>Results:</h3>
+    <ul>
+        {{ for patient in patients }}
+        <li>
+            {{ patient.username }} -
+            <a href="{% url 'create_test_order' patient.id}">Order Test</a>
+            <a href="{% url 'write_prescription' patient.id}">Write Prescription</a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% elif request.method == "POST" %}
+    <p>No patients found.</p>
+    {% endif %}
 </div>
 {% endblock %}
