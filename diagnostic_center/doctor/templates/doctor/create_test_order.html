@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="container">
-    <h2>Create Test Order</h2>
+    <h2>Create Test Order for {{ patient.username }}</h2>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}

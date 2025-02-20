@@ -54,17 +54,21 @@ def order_lab_test(request):
     return render(request, "doctor/order_lab_test.html", {"form": form})
 
 
-def create_test_order(request):
+def create_test_order(request, patient_id):
+    patient = get_object_or_404(User, id=patient_id, is_patient=True)
     if request.method == "POST":
         form = TestOrderForm(request.POST)
         if form.is_valid():
             test_order = form.save(commit=False)
             test_order.doctor = request.user
+            test_order.patient = patient
             test_order.save()
             return redirect("doctor_dashboard")
     else:
         form = TestOrderForm()
-    return render(request, "doctor/create_test_order.html", {"form": form})
+    return render(
+        request, "doctor/create_test_order.html", {"form": form, "patient": patient}
+    )
 
 
 def view_test_result(request, test_order_id):
